@@ -225,6 +225,7 @@ public:
         {
             pcl::moveFromROSMsg(currentCloudMsg, *laserCloudIn);
         }
+        // for Livox MID 360 sensor //
         else if (sensor == SensorType::LIVOX)
         {
             for (auto &field : currentCloudMsg.fields)
@@ -242,6 +243,7 @@ public:
             }
             pcl::moveFromROSMsg(currentCloudMsg, *laserCloudIn); 
         }
+        ///// /////
         else if (sensor == SensorType::OUSTER)
         {
             // Convert to Velodyne format

@@ -13,7 +13,7 @@
     mapFrame: "map"
 
     # GPS Settings
-    useImuHeadingInitialization: true           # if using GPS data, set to "true"
+    useImuHeadingInitialization: false           # if using GPS data, set to "true"
     useGpsElevation: false                      # if GPS elevation is bad, set to "false"
     gpsCovThreshold: 2.0                        # m^2, threshold for using GPS data
     poseCovThreshold: 25.0                      # m^2, threshold for using GPS data
@@ -27,40 +27,30 @@
     N_SCAN: 32                                  # number of lidar channel (i.e., Velodyne/Ouster: 16, 32, 64, 128, Livox Horizon: 6)
     Horizon_SCAN: 6000                          # lidar horizontal resolution (Velodyne:1800, Ouster:512,1024,2048, Livox Horizon: 4000)
     downsampleRate: 1                           # default: 1. Downsample your data if too many points(line). i.e., 16 = 64 / 4, 16 = 16 / 1
-    # point_filter_num: 3                         # default: 3. Downsample your data if too many points(point). e.g., 16: 1, 32: 5, 64: 8
     point_filter_num: 1                         # default: 3. Downsample your data if too many points(point). e.g., 16: 1, 32: 5, 64: 8
     lidarMinRange: 1.0                          # default: 1.0, minimum lidar range to be used
     lidarMaxRange: 30.0                       # default: 1000.0, maximum lidar range to be used
 
     # IMU Settings
-    imuType: 0                                  # 0: 6-axis  1: 9-axis
-    # imuRate: 500.0
+    imuType: 1                                
     imuRate: 200.0
     imuAccNoise: 3.9939570888238808e-03
     imuGyrNoise: 1.5636343949698187e-03
     imuAccBiasN: 6.4356659353532566e-05
     imuGyrBiasN: 3.5640318696367613e-05
-    # imuGravity: 9.80511
     imuRPYWeight: 0.01
     
     
-    imuGravity: -1.0
-    # Extrinsics: T_lb (lidar -> imu)
+    imuGravity: 1.0
     extrinsicTrans: [0.0, 0.0, 0.0]
-    # extrinsicRot: [-1.0, 0.0, 0.0,
-    #                 0.0, 1.0, 0.0,
-    #                 0.0, 0.0, -1.0]
     extrinsicRot: [1.0, 0.0, 0.0,
                     0.0, 1.0, 0.0,
                     0.0, 0.0, 1.0]
 
     # This parameter is set only when the 9-axis IMU is used, but it must be a high-precision IMU. e.g. MTI-680
-    # extrinsicRPY: [0.0, -1.0, 0.0,
-    #                 1.0, 0.0, 0.0,
-    #                 0.0, 0.0, 1.0]
-    # extrinsicRPY: [1.0, 0.0, 0.0,
-    #                 0.0, 1.0, 0.0,
-    #                 0.0, 0.0, 1.0]
+    extrinsicRPY: [-1.0, 0.0, 0.0,
+                    0.0, -1.0, 0.0,
+                    0.0, 0.0, -1.0]
 
     # voxel filter paprams
     mappingSurfLeafSize: 0.2                      # default: 0.4 - outdoor, 0.2 - indoor
@@ -77,7 +67,7 @@
     surroundingkeyframeAddingDistThreshold: 0.5   # meters, regulate keyframe adding threshold
     surroundingkeyframeAddingAngleThreshold: 0.2  # radians, regulate keyframe adding threshold
     surroundingKeyframeDensity: 2.0               # meters, downsample surrounding keyframe poses   
-    surroundingKeyframeSearchRadius: 50.0         # meters, within n meters scan-to-map optimization (when loop closure disabled)
+    surroundingKeyframeSearchRadius: 15.0         # meters, within n meters scan-to-map optimization (when loop closure disabled)
     surroundingKeyframeMapLeafSize: 0.3           # downsample local map point cloud
 
     # Loop closure

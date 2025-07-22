@@ -10,7 +10,7 @@ def generate_launch_description():
 
     share_dir = get_package_share_directory('liorf')
     parameter_file = LaunchConfiguration('params_file')
-    #rviz_config_file = os.path.join(share_dir, 'rviz', 'mapping.rviz')
+    rviz_config_file = os.path.join(share_dir, 'rviz', 'mapping.rviz')
 
     params_declare = DeclareLaunchArgument(
         'params_file',
@@ -48,11 +48,11 @@ def generate_launch_description():
             parameters=[parameter_file],
             output='screen'
         ),
-        # Node(
-        #     package='rviz2',
-        #     executable='rviz2',
-        #     name='rviz2',
-        #     arguments=['-d', rviz_config_file],
-        #     output='screen'
-        # )
+        Node(
+            package='rviz2',
+            executable='rviz2',
+            name='rviz2',
+            arguments=['-d', rviz_config_file],
+            output='screen'
+        )
     ])
